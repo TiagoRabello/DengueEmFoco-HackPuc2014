@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <color name="primary_color">#FFF44336</color>
+    <color name="primary_dark_color">#FFD32F2F</color>
+    
+    <color name="highlight_circle_fill_color">@color/primary_color</color>
+    <color name="highlight_circle_stroke_color">@color/primary_dark_color</color>
+    <color name="highlight_text_color">@android:color/black</color>
+    <color name="highlight_text_shadow_color">@android:color/white</color>
+</resources>
