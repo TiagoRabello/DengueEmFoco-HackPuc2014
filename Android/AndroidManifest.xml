@@ -5,27 +5,28 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="10"
         android:targetSdkVersion="21" />
-    <uses-permission android:name="android.permission.INTERNET"/>
- 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Requires OpenGL ES version 2 support, necessary for Google Maps -->
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
- 
+
     <!-- To allow download of Google Maps tiles from server. -->
     <uses-permission android:name="android.permission.INTERNET" />
- 
+
     <!-- To allow using connection status to determine whether data can be downloaded. -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
- 
+
     <!-- To allow cache of Google Maps tiles in external storage area. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
- 
+
     <!-- To allow use of WiFi or mobile cell data to determine location. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
- 
+
     <!-- To allow use of GPS to determine location. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -35,17 +36,17 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <uses-library android:name="com.google.android.maps"/>
- 
+        <uses-library android:name="com.google.android.maps" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCtBDJ12squp3DKboiSqtFkT5tdb71XAp4" />
-        
+
         <activity
-            android:name="com.example.projectangra.view.HomeActivity"
+            android:name=".view.HomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
