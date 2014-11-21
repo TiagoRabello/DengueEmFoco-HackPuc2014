@@ -161,17 +161,20 @@ function MarkerClusterer(map, opt_markers, opt_options) {
     // Add the map event listeners
     var that = this;
     google.maps.event.addListener(this.map_, 'zoom_changed', function () {
-        // Determines map type and prevent illegal zoom levels
-        var zoom = that.map_.getZoom();
-        var minZoom = that.map_.minZoom || 0;
-        var maxZoom = Math.min(that.map_.maxZoom || 100,
-                that.map_.mapTypes[that.map_.getMapTypeId()].maxZoom);
-        zoom = Math.min(Math.max(zoom, minZoom), maxZoom);
+        setTimeout(function () {
+            var zoom = that.map_.getZoom();
+            var minZoom = that.map_.minZoom || 0;
+            var maxZoom = Math.min(that.map_.maxZoom || 100,
+                    that.map_.mapTypes[that.map_.getMapTypeId()].maxZoom);
+            zoom = Math.min(Math.max(zoom, minZoom), maxZoom);
 
-        if (that.prevZoom_ != zoom) {
-            that.prevZoom_ = zoom;
-            that.resetViewport();
-        }
+            if (that.prevZoom_ != zoom) {
+                that.prevZoom_ = zoom;
+                that.resetViewport();
+            }
+        }, 100); //gambiarra violenta!!
+        // Determines map type and prevent illegal zoom levels
+
     });
 
     google.maps.event.addListener(this.map_, 'idle', function () {
@@ -1219,9 +1222,7 @@ ClusterIcon.prototype.createCss = function (pos, numb) {
     var style = [];
     //var radius = (Math.log(numb * 2 * map.zoom * map.zoom )+1)*3;
     //console.log(map.zoom);
-    var radius = Math.sqrt( numb * 5 * (map.zoom-5) * (map.zoom-5)/Math.PI );
-    //var radius = (map.zoom  + numb * 3) / 4;
-    radius = (radius < $(window).width()/13) ? radius : $(window).width()/13;
+    var radius = Math.sqrt((numb / 100000) * (map.zoom * map.zoom * map.zoom * map.zoom * map.zoom * map.zoom));
     style.push('padding:0;');
     style.push('margin:0;');
     style.push('background:rgba(244, 67, 54,0.16);');//

@@ -1,0 +1,21 @@
+#toggler{
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgb(244, 67, 54);
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#toggler .img-container{
+    width:            40px;
+    height:           40px;
+    background-image: url('refresh51.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.55;
+}
