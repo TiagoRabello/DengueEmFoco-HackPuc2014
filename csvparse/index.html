@@ -1,0 +1,77 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.1.min.js"></script>
+        <script>
+            function savePoint(lat, lon, date) {
+                lat = parseFloat(lat);
+                lon = parseFloat(lon);
+                Parse.initialize("xTCMviuSWCcRWP4CBcSyKSBZerdo0OjqDgMZnWRO", "FwS5OjW9IYt3SakNu5pRKCUF9yjaEA6LmSzN1rY2");
+                var TestObject = Parse.Object.extend("RioData");
+                var testObject = new TestObject();
+                var point = new Parse.GeoPoint(lat, lon);
+                testObject.set('pos', point);
+                date = date.split('/');
+                var aux = date[0];
+                date[0] = date[1];
+                date[1] = aux;
+                date.join('/');
+                testObject.set('date', new Date(date));
+                testObject.save();
+            }
+
+            $.get('historico_1.csv',function(response){
+                index = 2;
+                response = response.split("\r\n");
+                setInterval(  function(){
+                    row = response[index].split(',');
+                    savePoint(row[2], row[1], row[0]);
+                    index++;
+                },50)
+            });
+
+            /*
+             $.get('getfiles.php', function (response) {
+             response = $.parseJSON(response);
+             for (var i = 0; i < response.length; i++) {
+             $.get(response[i], function (response) {
+             response = response.split('\r\n');
+             var row;
+             var head = response[1].split(',');
+             var lat, lon, date, j = 0;
+             while (typeof response[2][j] !== 'undefined' && head[j] !== 'Lat_WGS84') {
+             j++;
+             }
+             lat = j;
+             j = 0;
+             while (typeof response[2][j] !== 'undefined' && head[j] !== 'Long_WGS84') {
+             j++;
+             }
+             lon = j;
+             j = 0;
+             while (typeof response[2][j] !== 'undefined' && head[j] !== 'DT_SIN_PRI') {
+             j++;
+             }
+             date = j;
+             
+             for (var i = 2; i < response.length; i++) {
+             row = response[i].split(',');
+             savePoint(row[lat], row[lon], [date]);
+             for (aux = 0; aux < 1000; aux++) {
+             Math.sqrt(Math.sqrt(Math.sqrt(aux)));
+             }
+             }
+             });
+             }
+             });*/
+
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>
